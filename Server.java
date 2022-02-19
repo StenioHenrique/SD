@@ -12,13 +12,13 @@ public class Server {
 			serverSocket = new ServerSocket(10008); 
 			System.out.println ("Conexao de socket criada");
 			try { 
-				while (true){
-					Socket s = serverSocket.accept(); 
-					System.out.println ("Esperando conexao");
-					//criacao das threads
-					new EnviarMsgServer(s);
-					new ReceberMsgServer(s);
-				}
+				
+				Socket s = serverSocket.accept(); 
+				System.out.println ("Esperando conexao");
+				//criacao das threads
+				new EnviarMsgServer(s);
+				new ReceberMsgServer(s);
+				
 			} catch (IOException e) {
 				System.err.println("Conexao falhou"); 
 				System.exit(1); 
