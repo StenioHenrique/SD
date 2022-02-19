@@ -4,8 +4,6 @@ import java.io.*;
 //Classe principal que ira inicializar o socket e as threads do servidor
 
 public class Server {
-	protected Socket clientSocket;
-	
 	public static void main(String[] args) throws IOException { 
 		ServerSocket serverSocket = null;
 		
@@ -26,13 +24,13 @@ public class Server {
 				System.exit(1); 
 			}
 		} catch (IOException e) {
-			System.err.println("Could not listen on port: 10008."); 
+			System.err.println("Não foi possivel acessar a porta: 10008."); 
 			System.exit(1); 
 		} finally {
 			try {
 				serverSocket.close(); 
 			} catch (IOException e) { 
-				System.err.println("Could not close port: 10008."); 
+				System.err.println("Não foi possivel fechar a porta: 10008."); 
 				System.exit(1); 
 			} 
 		}

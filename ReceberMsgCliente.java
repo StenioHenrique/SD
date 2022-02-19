@@ -5,10 +5,10 @@ import java.net.*;
 //Ou seja, ela escuta o server
 
 public class ReceberMsgCliente extends Thread {
-	protected Socket socket; 
+	private Socket socket; 
 	
-	public ReceberMsgCliente(Socket socket) throws IOException {
-		this.socket = socket; 
+	public ReceberMsgCliente(Socket sc) throws IOException {
+		socket = sc; 
 		start();
 	}
 	
@@ -23,22 +23,21 @@ public class ReceberMsgCliente extends Thread {
 			
 			//Leitura e impressao na tela dos dados que vem do server
 			
-			while(!"Sair".equalsIgnoreCase(inputLine)) {
-				if(in.ready()){
-					inputLine = in.readLine();
-					if(inputLine.equals("Sair")) {
-						System.out.print("Servidor caiu! \r\n");
-						break; 
-					} else
-						System.out.print("Server: "+ inputLine +"\r\n");
-					}
+			while((inputLine = in.readLine()) != null) {
+				
+				if(inputLine.equals("Sair")) {
+					System.out.print("Servidor caiu! \r\n");
+					break; 
+				} else {
+					System.out.print("Server: "+ inputLine +"\r\n");
+				}
 			}
 			
-			socket.close();
 			in.close();
-			
+			socket.close();
+
 		} catch (IOException e) {
-			System.err.println("Problema de conexao com server!");
+			System.err.println("Aqui Problema de conexao com server!");
 			System.exit(1); 
 		}
 		

@@ -27,7 +27,8 @@ public class ReceberMsgServer extends Thread {
 				if(in.ready()){
 					inputLine = in.readLine();
 					if(inputLine.equals("Sair")) {
-						System.out.print("Servidor caiu! \r\n");
+						System.out.print("Cliente desconectado! \r\n");
+						
 						break; 
 					} else
 						System.out.print("Cliente: "+ inputLine +"\r\n");
