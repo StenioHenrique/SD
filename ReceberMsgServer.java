@@ -1,6 +1,8 @@
 import java.net.*; 
 import java.io.*; 
 
+//Classe responsavel por implementar a thread que recebe as mensagens do cliente
+//Ou seja, ela escuta o cliente
 public class ReceberMsgServer extends Thread {
 	protected Socket clientSocket;
 
@@ -8,22 +10,35 @@ public class ReceberMsgServer extends Thread {
 		clientSocket = clientSoc;
 		start();
 	}
-
+	
 	public void run() {
-		System.out.println ("New Communication Thread Started");
-		try {    	
+		
+		try { 
+			System.out.println ("...Ou aguarde o envio por parte do cliente!");
+
 			BufferedReader in = new BufferedReader( 
 			new InputStreamReader( clientSocket.getInputStream())); 
-			String inputLine; 
-			while ((inputLine = in.readLine()) != null){ 
-				System.out.println ("Cliente: " + inputLine);
-				if (inputLine.equals("Bye.")) 
-					break; 
-			} 
+			
+			String inputLine = ""; 
+			
+			// Leitura e impressao na tela dos dados que vem do cliente 
+			
+			while(!"Sair".equalsIgnoreCase(inputLine)) {
+				if(in.ready()){
+					inputLine = in.readLine();
+					if(inputLine.equals("Sair")) {
+						System.out.print("Servidor caiu! \r\n");
+						break; 
+					} else
+						System.out.print("Cliente: "+ inputLine +"\r\n");
+					}
+			}
+
 			in.close(); 
-			clientSocket.close(); 		
+			clientSocket.close();
+			
 		}catch (IOException e) { 
-			System.err.println("Problem with Communication Server");
+			System.err.println("Problema de Comunicação com o servidor");
 			System.exit(1); 
 		} 
 	}

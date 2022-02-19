@@ -1,6 +1,8 @@
 import java.net.*; 
 import java.io.*; 
 
+//Classe responsavel por implementar a thread que envia as mensagens do cliente
+//Ou seja, ela le do teclado e envia para o socket do cliente
 public class EnviarMsgServer extends Thread {
 	protected Socket clientSocket;
 	
@@ -10,19 +12,24 @@ public class EnviarMsgServer extends Thread {
 	}
 
 	public void run() {
-		System.out.println ("New Communication Thread Started");
 		try { 
+			System.out.println ("Conectado, digite sua mensagem...");
+			
 			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),true); 
-			//variavel que ta lendo do teclado padrao 
+			out.flush();
+			
 			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-			//variavel que recebe a leitura 
 			String userInput;
 			
-			//System.out.println ("Type Message (\"Bye.\" to quit)");
+			System.out.println ("Para encerrar a conexão, digite 'Sair'.");
+			//loop que faz a leitura do teclado e envia ao cliente 
 			while ((userInput = stdIn.readLine()) != null) {
 				out.println(userInput);
-				if (userInput.equals("Bye."))
-					break;
+				if (userInput.equalsIgnoreCase("Sair")) {
+					System.out.println("Cliente desconetado!");
+					break; 
+				}
+				out.flush();
 			}
 			   
 			out.close(); 
