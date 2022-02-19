@@ -21,12 +21,12 @@ public class EnviarMsgServer extends Thread {
 			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 			String userInput;
 			
-			System.out.println ("Para encerrar a conexão, digite 'Sair'.");
+			System.out.println ("Para encerrar a conexao, digite 'Sair'.");
 			//loop que faz a leitura do teclado e envia ao cliente 
 			while ((userInput = stdIn.readLine()) != null) {
 				out.println(userInput);
 				if (userInput.equalsIgnoreCase("Sair")) {
-					System.out.println("Cliente desconetado!");
+					System.out.println("Desconectado!");
 					break; 
 				}
 				out.flush();
@@ -36,7 +36,7 @@ public class EnviarMsgServer extends Thread {
 			clientSocket.close(); 
 		} 
 		catch (IOException e) { 
-			System.err.println("Problem with Communication Server");
+			System.err.println("Problema de comunicacao com Server");
 			System.exit(1); 
 		} 
 	}

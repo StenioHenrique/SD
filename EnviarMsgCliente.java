@@ -19,11 +19,10 @@ public class EnviarMsgCliente extends Thread {
 			String userInput = ""; 
 			
 			System.out.println ("Para encerrar a conexão, digite 'Sair'.");
-			while(!"Sair".equalsIgnoreCase(userInput)) {
-				userInput = in.readLine();
+			while ((userInput = in.readLine()) != null) {
 				out.println(userInput);
 				if (userInput.equalsIgnoreCase("Sair")) {
-					System.out.println("Servidor desconetado!");
+					System.out.println("Desconectado!");
 					break; 
 				}
 				out.flush();
@@ -31,6 +30,7 @@ public class EnviarMsgCliente extends Thread {
 			
 			out.close();
 			socket.close();
+			
 		} catch (IOException e) {
 			System.err.println("Problema de conexao com server!");
 			System.exit(1); 

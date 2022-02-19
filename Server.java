@@ -10,27 +10,27 @@ public class Server {
 		try { 
 			//criando a conexao de socket
 			serverSocket = new ServerSocket(10008); 
-			System.out.println ("Conexão de socket criada");
+			System.out.println ("Conexao de socket criada");
 			try { 
 				while (true){
 					Socket s = serverSocket.accept(); 
-					System.out.println ("Esperando conexão");
+					System.out.println ("Esperando conexao");
 					//criacao das threads
 					new EnviarMsgServer(s);
 					new ReceberMsgServer(s);
 				}
 			} catch (IOException e) {
-				System.err.println("Conexão falhou"); 
+				System.err.println("Conexao falhou"); 
 				System.exit(1); 
 			}
 		} catch (IOException e) {
-			System.err.println("Não foi possivel acessar a porta: 10008."); 
+			System.err.println("Nao foi possivel acessar a porta: 10008."); 
 			System.exit(1); 
 		} finally {
 			try {
 				serverSocket.close(); 
 			} catch (IOException e) { 
-				System.err.println("Não foi possivel fechar a porta: 10008."); 
+				System.err.println("Nao foi possivel fechar a porta: 10008."); 
 				System.exit(1); 
 			} 
 		}

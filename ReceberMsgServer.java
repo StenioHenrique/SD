@@ -39,7 +39,7 @@ public class ReceberMsgServer extends Thread {
 			clientSocket.close();
 			
 		}catch (IOException e) { 
-			System.err.println("Problema de Comunicação com o servidor");
+			System.err.println("Problema de Comunicacao com o servidor");
 			System.exit(1); 
 		} 
 	}
