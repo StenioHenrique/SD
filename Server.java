@@ -8,7 +8,7 @@ public class Server {
 	public static void main(String[] args) throws IOException { 
 		ServerSocket serverSocket = null;
 		try { 
-			serverSocket = new ServerSocket(10005); 
+			serverSocket = new ServerSocket(10008); 
 			System.out.println ("Connection Socket Created");
 			try { 
 				while (true){
