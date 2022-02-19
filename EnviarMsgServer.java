@@ -13,7 +13,7 @@ public class EnviarMsgServer extends Thread {
 		System.out.println ("New Communication Thread Started");
 		try { 
 			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),true); 
-			//variavel que tá lendo do teclado padrao 
+			//variavel que ta lendo do teclado padrao 
 			BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 			//variavel que recebe a leitura 
 			String userInput;
